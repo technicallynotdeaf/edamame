@@ -5,7 +5,7 @@ A file manager for POD designs - esp. for generating AOP panels from tiled desig
 
 
 ## To install: 
-1. zip up the "component" folder (e.g. into a file called com_tawny.zip)
+1. zip up the "component" folder (e.g. into a file called com_edamame.zip)
 2. On a Joomla server, log in as Administrator and go to "Extensions" (top menus) and then "manage" 
 3. Drag and drop the zip file into the box that says "upload & install" 
 
