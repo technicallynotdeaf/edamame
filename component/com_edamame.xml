@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+
+	<name>EDAMAME</name>
+	<!-- The following elements are optional and free of formatting constraints -->
+	<creationDate>September 2021</creationDate>
+	<author>Alison Keen</author>
+	<authorEmail>ali.keen@gmail.com</authorEmail>
+	<authorUrl>https://github.com/alisonkeen</authorUrl>
+	<copyright>Copyright Info</copyright>
+	<license>GPL V3.0 license - free noncommercial use with attribution</license>
+	<!--  The version string is recorded in the components table -->
+  <!-- Basic functionality - add/edit questions, add/edit policices
+       is still not all there yet. When it's all working that will be v1 --> 
+	<version>0.0.2</version>
+	<!-- The description is optional and defaults to the name -->
+	<description>Manage and generate POD designs</description>
+
+	<!-- Site Main File Copy Section -->
+	<!-- Note the folder attribute: This attribute describes the folder
+		to copy FROM in the package to install therefore files copied
+		in this section are copied from /site/ in the package -->
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>edamame.php</filename>
+		<filename>controller.php</filename>
+		<folder>views</folder>
+		<folder>helpers</folder>
+	</files>
+
+	<media destination="com_edamame" folder="media">
+		<folder>images</folder>
+	</media>
+
+	<administration>
+		<!-- This menu shows up under "Components" when logged in to backend -->
+		<menu>Edamame</menu>
+		<submenu>
+			<menu view='shirts'>Current Designs</menu>
+			<menu view='designgenerator'>New Design</menu>
+			<menu view='artworkgenerator'>artwork generator</menu>
+			<menu view='sourceimages'>Source Images</menu>
+ 		</submenu>
+
+		<!-- Administration Main File Copy Section -->
+		<!-- Note the folder attribute: This attribute describes the folder
+			to copy FROM in the package to install therefore files copied
+			in this section are copied from /admin/ in the package -->
+		<files folder="admin">
+			<!-- Admin Main File Copy Section -->
+			<filename>index.html</filename>
+			<filename>edamame.php</filename>
+			<filename>controller.php</filename>
+			<folder>views</folder>
+			<folder>sql</folder>
+			<folder>helpers</folder>
+		</files>
+	</administration>
+
+</extension>
