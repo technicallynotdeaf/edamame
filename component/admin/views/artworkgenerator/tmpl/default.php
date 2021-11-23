@@ -1,4 +1,8 @@
 <?php
+
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_edamame
@@ -20,8 +24,7 @@
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
+JViewLegacy::loadHelper('edamamehelper');
 
 $jinput = JFactory::getApplication()->input;
 
@@ -56,7 +59,7 @@ $longsleeve = "dscn-mens-LS-pocket.jpeg";
 
 echo HTMLHelper::image( $silhouettes_location . $shortsleeve , 'DSCN Short Sleeve Shirt' , $dimensions);
 
-echo "<h4> Panels to generate: </h4>"; 
+echo "\n<h4> Panels to generate: </h4>"; 
 
 $panels = array ( 
   array("Name" => "Front Right", "x" => 1433, "y" => 3666),
@@ -70,14 +73,61 @@ $panels = array (
   array("Name" => "Collar Inside", "x" => 2082, "y" => 260 )
 );
 
-
 foreach ($panels as $panel) {
 
-  echo $panel['Name'] . ": " . $panel['x'] . "px by " . $panel['y'] . "px <br/>";
+  echo "\n" . $panel['Name'] . ": " . $panel['x'] . "px by " . $panel['y'] . "px <br/>";
   //print_r($panel);
 
 }
 
+$tile = imagecreatefromPNG($image_location . $imagename);
 
+if(!($newpanel = imagecreatetruecolor(200, 200))) {
+  echo "\n<br/> <h3> Couldn't create image for some reason... </h3>";
+  die();
+}
+
+imagesettile($newpanel, $tile);
+
+imagefilledrectangle($newpanel, 0, 0, 199, 199, IMG_COLOR_TILED);
+
+echo "\n<br/>CWD: " . getcwd() . "\n<br/>"; 
+
+$adjust = "../";
+$outputlocation = "media/com_edamame/generated/";
+$filename = "panel3.png";
+
+$dest = $adjust . $outputlocation . $filename;
+
+if(imagePNG($newpanel, $dest)) {
+  echo "Saved: " . $dest;
+}else {
+  echo "Didn't save to " . $dest . " ... sorry."; 
+}
+
+//echo "\n</br> Created Image: </br>";
+
+$location = URI::root() . $outputlocation . $filename;
+
+//echo HTMLHelper::image($location , 'panel' , $dimensions);
+
+echo "\n</br>Stars:  </br>";
+
+
+$file_path =  URI::root() . $outputlocation;
+$size = 200;
+$stars = 4;
+$value = 2;
+$filename2 = 'starsimage.png';
+
+EdamameHelper::generate_png($file_path, $size, $stars, $value, $filename)
+
+$outputfile = URI::root() . $outputlocation . $filename2;
+
+
+echo HTMLHelper::image($outputfile , 'stars' , $dimensions);
+
+echo "\n<h4> Preeeetty. </h4>";
 
 ?>
+

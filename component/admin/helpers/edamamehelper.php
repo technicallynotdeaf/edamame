@@ -287,6 +287,42 @@ abstract class EdamameHelper
     return $voting_score;
   }
 
+    function generate_png($file_path, $size, $stars, $value, $output = '') {
+        $image_set = imagecreatefrompng($file_path);
+
+        $star_empty = imagecreatetruecolor($size, $size);
+        imagesavealpha($star_empty, true);
+        $star_empty_transparent = imagecolorallocatealpha($star_empty, 0, 0, 0, 127);
+        imagefill($star_empty, 0, 0, $star_empty_transparent);
+        $star_filled = imagecreatetruecolor($size, $size);
+        imagesavealpha($star_filled, true);
+        $star_filled_transparent = imagecolorallocatealpha($star_filled, 0, 0, 0, 127);
+        imagefill($star_filled, 0, 0, $star_filled_transparent);
+
+        imagecopy($star_empty, $image_set, 0, 0, 0, 0, $size, $size);
+        imagecopy($star_filled, $image_set, 0, 0, 0, $size * 2, $size, $size);
+
+        $image = imageCreateTrueColor($stars * $size, $size);
+        imagesavealpha($image, true);
+        $image_transparent = imagecolorallocatealpha($image, 0, 0, 0, 127);
+        imagefill($image, 0, 0, $image_transparent);
+
+        imageSetTile($image, $star_empty);
+        imagefilledrectangle($image, 0, 0, $stars * $size, $size, IMG_COLOR_TILED);
+        imageSetTile($image, $star_filled);
+        imagefilledrectangle($image, 0, 0, $value * $size, $size, IMG_COLOR_TILED);
+
+        if ($output == '') {
+            Header("Content-type: image/png");
+            imagepng($image);
+        } else imagepng($image, $output);
+
+        imagedestroy($image);
+        imagedestroy($image_set);
+        imagedestroy($star_empty);
+        imagedestroy($star_filled);
+    }
+
 
   
 }

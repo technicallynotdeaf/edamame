@@ -12,7 +12,7 @@
 	<!--  The version string is recorded in the components table -->
   <!-- Basic functionality - add/edit questions, add/edit policices
        is still not all there yet. When it's all working that will be v1 --> 
-	<version>0.0.12</version>
+	<version>0.0.22</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>Manage and generate POD designs</description>
 
@@ -32,6 +32,7 @@
 		<folder>images</folder>
 		<folder>tiles</folder>
 		<folder>silhouettes</folder>
+		<folder>generated</folder>
 	</media>
 
 	<administration>
