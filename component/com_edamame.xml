@@ -12,7 +12,7 @@
 	<!--  The version string is recorded in the components table -->
   <!-- Basic functionality - add/edit questions, add/edit policices
        is still not all there yet. When it's all working that will be v1 --> 
-	<version>0.0.2</version>
+	<version>0.0.12</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>Manage and generate POD designs</description>
 
@@ -30,6 +30,8 @@
 
 	<media destination="com_edamame" folder="media">
 		<folder>images</folder>
+		<folder>tiles</folder>
+		<folder>silhouettes</folder>
 	</media>
 
 	<administration>
